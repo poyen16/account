@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINE Notify Subscription</title>
+</head>
+<body>
+    <header>
+        <h1>LINE Notify Subscription</h1>
+    </header>
+    <main>
+        <p>Welcome to LINE Notify subscription. Please enter your LINE Notify access token below to subscribe:</p>
+        <form id="subscription-form">
+            <label for="access-token">Access Token:</label>
+            <input type="text" id="access-token" name="access-token" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <div id="response-message"></div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Your Website Name</p>
+    </footer>
+    <script>
+        const form = document.getElementById("subscription-form");
+        const responseMessage = document.getElementById("response-message");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const accessToken = document.getElementById("access-token").value;
+
+            // Send the access token to your server for LINE Notify integration.
+            // You will need a server-side script to handle the LINE Notify API.
+
+            // Example: Send the token to a hypothetical server endpoint.
+            const response = await fetch("/subscribe", {
+                method: "POST",
+                body: JSON.stringify({ accessToken }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const data = await response.json();
+
+            if (response.status === 200) {
+                responseMessage.innerHTML = `<p>Subscription successful! You will receive LINE Notify notifications.</p>`;
+            } else {
+                responseMessage.innerHTML = `<p>Subscription failed. Please check your access token and try again.</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
